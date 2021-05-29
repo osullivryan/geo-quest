@@ -61,7 +61,7 @@ class QuestDisplay:
 
     def draw_text(self, message: Text):
         size = FONT24.getsize(message)
-        location = (10, self.epd.width - size[1] - PADDING - 1, self.epd.height, self.epd.width)
+        location = (10, self.epd.width - size[1] - 2.0 * PADDING, self.epd.height, self.epd.width)
         self.draw_area.rectangle(location, fill=255)
         self.draw_area.text((location[0], location[1]), message, font=FONT24, fill=0)
         self.epd.display(self.epd.getbuffer(self.empty_frame))
