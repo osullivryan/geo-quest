@@ -14,7 +14,10 @@ def get_current_lat_lon(attempts: Optional[int] = 100) -> Tuple[float, float]:
     while True:
         current_attempt += 1
         try:
-            recv = ser.readline().decode()
+            try:
+                recv = ser.readline().decode()
+            except UnicodeDecodeError:
+                continue
             if recv.startswith('$'):
                 record = pynmea2.parse(recv)
                 if recv.startswith('$GPRMC') or recv.startswith('$GNRMC'):
